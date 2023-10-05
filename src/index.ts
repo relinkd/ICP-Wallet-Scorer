@@ -8,7 +8,7 @@ import {
 import { guild as guildRequest } from './params/guild';
 
 $update;
-export async function xkcd(): Promise<HttpResponse> {
+export async function xkcd(): Promise<string | undefined> {
     const guild = await guildRequest('0xDD6BFbe9EC414FFABBcc80BB88378c0684e2Ad9c');
 
     return guild;
