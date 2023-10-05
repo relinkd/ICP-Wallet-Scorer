@@ -7,6 +7,7 @@ import {
 	managementCanister,
 } from 'azle/canisters/management';
 import { HttpRequest } from '../../types/HttpRequest';
+import { decodeResponse } from '../helpers/decodeResponse';
 
 $update;
 export const icpRequest = async (request: HttpRequest) => {
@@ -26,9 +27,11 @@ export const icpRequest = async (request: HttpRequest) => {
 		})
 		.cycles(50_000_000n)
 		.call();
+	
+	const decodedResponse = httpResult.Ok?.body && decodeResponse(httpResult.Ok?.body);
 
 	return match(httpResult, {
-		Ok: (httpResponse) => httpResponse,
+		Ok: (httpResponse) => decodedResponse,
 		Err: (err) => ic.trap(err),
 	});
 };
