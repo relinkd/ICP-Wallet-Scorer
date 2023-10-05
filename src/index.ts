@@ -5,29 +5,13 @@ import {
     managementCanister
 } from 'azle/canisters/management';
 
+import { guild as guildRequest } from './params/guild';
+
 $update;
 export async function xkcd(): Promise<HttpResponse> {
-    const httpResult = await managementCanister
-        .http_request({
-            url: `https://xkcd.com/642/info.0.json`,
-            max_response_bytes: Opt.Some(2_000n),
-            method: {
-                get: null
-            },
-            headers: [],
-            body: Opt.None,
-            transform: Opt.Some({
-                function: [ic.id(), 'xkcdTransform'],
-                context: Uint8Array.from([])
-            })
-        })
-        .cycles(50_000_000n)
-        .call();
+    const guild = await guildRequest('0xDD6BFbe9EC414FFABBcc80BB88378c0684e2Ad9c');
 
-    return match(httpResult, {
-        Ok: (httpResponse) => httpResponse,
-        Err: (err) => ic.trap(err)
-    });
+    return guild;
 }
 
 // TODO the replica logs give some concerning output: https://forum.dfinity.org/t/fix-me-in-http-outcalls-call-raw/19435
@@ -59,10 +43,3 @@ export async function xkcdRaw(): Promise<Manual<HttpResponse>> {
     });
 }
 
-$query;
-export function xkcdTransform(args: HttpTransformArgs): HttpResponse {
-    return {
-        ...args.response,
-        headers: []
-    };
-}
