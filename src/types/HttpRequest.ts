@@ -1,47 +1,55 @@
 import {
-	blob,
-	Func,
-	nat16,
-	Opt,
-	Query,
-	Record,
-	Variant,
-	Vec,
+    blob,
+    bool,
+    Canister,
+    Func,
+    nat16,
+    None,
+    Opt,
+    query,
+    Record,
+    text,
+    Tuple,
+    Variant,
+    Vec
 } from 'azle';
 
-export type Header = { name: string; value: string; };
+const Token = Record({
+    // add whatever fields you'd like
+    arbitrary_data: text
+});
 
-type Token = Record<{
-    arbitrary_data: string;
-}>;
+const StreamingCallbackHttpResponse = Record({
+    body: blob,
+    token: Opt(Token)
+});
 
-type StreamingCallbackHttpResponse = Record<{
-    body: blob;
-    token: Opt<Token>;
-}>;
+export const Callback = Func([text], StreamingCallbackHttpResponse, 'query');
 
-type Callback = Func<Query<(t: Token) => StreamingCallbackHttpResponse>>;
+const CallbackStrategy = Record({
+    callback: Callback,
+    token: Token
+});
 
-type CallbackStrategy = Record<{
-    callback: Callback;
-    token: Token;
-}>;
+const StreamingStrategy = Variant({
+    Callback: CallbackStrategy
+});
 
-type StreamingStrategy = Variant<{
-    Callback: CallbackStrategy;
-}>;
+type HeaderField = [text, text];
+const HeaderField = Tuple(text, text);
 
-export type HttpRequest = Record<{
-    method: 'get';
-    url: string;
-    headers: Vec<Header>;
-    body: blob | null;
-}>;
+export const HttpResponse = Record({
+    status_code: nat16,
+    headers: Vec(HeaderField),
+    body: blob,
+    streaming_strategy: Opt(StreamingStrategy),
+    upgrade: Opt(bool)
+});
 
-export type HttpResponse = Record<{
-    status_code: nat16;
-    headers: Vec<Header>;
-    body: blob;
-    streaming_strategy: Opt<StreamingStrategy>;
-    upgrade: Opt<boolean>;
-}>;
+export const HttpRequest = Record({
+    method: text,
+    url: text,
+    headers: Vec(HeaderField),
+    body: blob,
+    certificate_version: Opt(nat16)
+});
