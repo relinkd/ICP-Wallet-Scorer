@@ -4,7 +4,7 @@
             "type": "custom",
             "build": "npx azle outgoing_http_requests",
             "root": "src",
-            "ts": "src/index.ts",
+            "main": "src/index.ts",
             "candid": "src/index.did",
             "wasm": ".azle/outgoing_http_requests/outgoing_http_requests.wasm.gz",
             "declarations": {
