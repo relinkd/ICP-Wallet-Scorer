@@ -1,4 +1,4 @@
-import { ic, Manual, match, Opt, Principal, $query, $update } from 'azle';
+import { ic, Manual, match, Opt, Principal, $query, $update, text } from 'azle';
 import {
     HttpResponse,
     HttpTransformArgs,
@@ -9,7 +9,7 @@ import { decodeResponse } from './lib/helpers/decodeResponse';
 import { guild as guildRequest } from './params/guild';
 
 $update;
-export async function xkcd(): Promise<string> {
+export async function xkcd(): Promise<text> {
     const guild = await guildRequest('0xDD6BFbe9EC414FFABBcc80BB88378c0684e2Ad9c');
 
     return guild!;
