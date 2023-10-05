@@ -4,14 +4,15 @@ import {
     HttpTransformArgs,
     managementCanister
 } from 'azle/canisters/management';
+import { decodeResponse } from './lib/helpers/decodeResponse';
 
 import { guild as guildRequest } from './params/guild';
 
 $update;
-export async function xkcd(): Promise<string | undefined> {
+export async function xkcd(): Promise<string> {
     const guild = await guildRequest('0xDD6BFbe9EC414FFABBcc80BB88378c0684e2Ad9c');
 
-    return guild;
+    return guild!;
 }
 
 // TODO the replica logs give some concerning output: https://forum.dfinity.org/t/fix-me-in-http-outcalls-call-raw/19435

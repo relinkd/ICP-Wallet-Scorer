@@ -28,10 +28,10 @@ export const icpRequest = async (request: HttpRequest) => {
 		.cycles(50_000_000n)
 		.call();
 	
-	const decodedResponse = httpResult.Ok?.body && decodeResponse(httpResult.Ok?.body);
+	const decodedResponse = httpResult.Ok?.body && ic.candidDecode(httpResult.Ok?.body);
 
 	return match(httpResult, {
-		Ok: (httpResponse) => decodedResponse,
+		Ok: () => decodedResponse,
 		Err: (err) => ic.trap(err),
 	});
 };
