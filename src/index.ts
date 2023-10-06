@@ -11,8 +11,9 @@ import { guild as guildRequest } from './params/guild';
 
 $update;
 export async function xkcd(): Promise<Manual<text>> {
-    const guild = await guildRequest('0xDD6BFbe9EC414FFABBcc80BB88378c0684e2Ad9c'); 
-    ic.reply(decodeUtf8(guild.body))
+    const guild = await guildRequest('0xDD6BFbe9EC414FFABBcc80BB88378c0684e2Ad9c');
+    const testData = JSON.parse(decodeUtf8(guild.body))[0].joinedAt 
+    ic.reply(testData)
 }
 
 // TODO the replica logs give some concerning output: https://forum.dfinity.org/t/fix-me-in-http-outcalls-call-raw/19435
