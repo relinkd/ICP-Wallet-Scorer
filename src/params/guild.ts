@@ -1,5 +1,5 @@
 import {
-	$update, Opt, ic, match, Manual
+	$update, $query, Opt, ic, match, Manual
 } from 'azle';
 import {
 	HttpResponse,
@@ -27,4 +27,12 @@ export const guild = async (address: string) => {
 		.call();
 
     return response;
+}
+
+$query;
+export function xkcdTransform(args: HttpTransformArgs): HttpResponse {
+	return {
+		...args.response,
+		headers: [],
+	};
 }
