@@ -1,4 +1,4 @@
-import { ic, Manual, match, Opt, Principal, $query, $update } from 'azle';
+import { ic, Manual, match, Opt, Principal, $query, $update, text } from 'azle';
 import {
     HttpResponse,
     HttpTransformArgs,
@@ -17,7 +17,7 @@ export async function xkcd(): Promise<HttpResponse> {
 
 // TODO the replica logs give some concerning output: https://forum.dfinity.org/t/fix-me-in-http-outcalls-call-raw/19435
 $update;
-export async function xkcdRaw(): Promise<Manual<HttpResponse>> {
+export async function xkcdRaw(): Promise<Manual<text>> {
     const httpResult = await ic.callRaw(
         Principal.fromText('aaaaa-aa'),
         'http_request',
@@ -40,7 +40,7 @@ export async function xkcdRaw(): Promise<Manual<HttpResponse>> {
 
     match(httpResult, {
         Ok: (httpResponse) => ic.candidDecode(httpResponse),
-        Err: (err) => ic.trap(err)
+        Err: (err) => 'Error'
     });
 }
 
