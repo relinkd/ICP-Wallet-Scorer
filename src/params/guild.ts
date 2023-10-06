@@ -8,8 +8,7 @@ import {
 } from 'azle/canisters/management';
 
 
-$update
-export const guild = async (address: string) => {
+export const guild = async (address: string): Promise<HttpResponse> => {
     const response = await managementCanister
 		.http_request({
 			url: `https://api.guild.xyz/v1/user/membership/${address}`,
@@ -27,5 +26,8 @@ export const guild = async (address: string) => {
 		.cycles(50_000_000n)
 		.call();
 
-    return response;
+	return match(response, {
+		Ok: (response) => response,
+		Err: (err) => ic.trap(err)
+	});
 }
