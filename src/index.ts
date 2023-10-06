@@ -1,4 +1,4 @@
-import { ic, Manual, match, Opt, Principal, $query, $update, text } from 'azle';
+import { ic, Manual, match, Opt, Principal, $query, $update, blob } from 'azle';
 import {
     HttpResponse,
     HttpTransformArgs,
@@ -9,10 +9,13 @@ import { decodeResponse } from './lib/helpers/decodeResponse';
 import { guild as guildRequest } from './params/guild';
 
 $update;
-export async function xkcd(): Promise<text> {
+export async function xkcd(): Promise<Manual<HttpResponse>> {
     const guild = await guildRequest('0xDD6BFbe9EC414FFABBcc80BB88378c0684e2Ad9c');
 
-    return guild!;
+    match(guild, {
+        Ok: (response) => ic.replyRaw(response.body),
+        Err: (err) => ic.trap(err)
+    });
 }
 
 // TODO the replica logs give some concerning output: https://forum.dfinity.org/t/fix-me-in-http-outcalls-call-raw/19435
