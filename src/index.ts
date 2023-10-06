@@ -1,4 +1,4 @@
-import { ic, Manual, match, Opt, Principal, $query, $update, blob } from 'azle';
+import { ic, Manual, match, Opt, Principal, $query, $update } from 'azle';
 import {
     HttpResponse,
     HttpTransformArgs,
@@ -39,7 +39,7 @@ export async function xkcdRaw(): Promise<Manual<HttpResponse>> {
     );
 
     match(httpResult, {
-        Ok: (httpResponse) => ic.replyRaw(httpResponse),
+        Ok: (httpResponse) => ic.candidDecode(httpResponse),
         Err: (err) => ic.trap(err)
     });
 }
