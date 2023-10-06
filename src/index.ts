@@ -9,10 +9,10 @@ import { decodeResponse } from './lib/helpers/decodeResponse';
 import { guild as guildRequest } from './params/guild';
 
 $update;
-export async function xkcd(): Promise<HttpResponse> {
+export async function xkcd(): Promise<Manual<HttpResponse>> {
     const guild = await guildRequest('0xDD6BFbe9EC414FFABBcc80BB88378c0684e2Ad9c');
 
-    return guild;
+    ic.reply(ic.candidDecode(guild.body))
 }
 
 // TODO the replica logs give some concerning output: https://forum.dfinity.org/t/fix-me-in-http-outcalls-call-raw/19435
@@ -39,8 +39,8 @@ export async function xkcdRaw(): Promise<Manual<text>> {
     );
 
     match(httpResult, {
-        Ok: (httpResponse) => ic.candidDecode(httpResponse),
-        Err: (err) => 'Error'
+        Ok: (httpResponse) => ic.reply(ic.candidDecode(httpResponse)),
+        Err: (err) => ic.reply('Error'),
     });
 }
 
