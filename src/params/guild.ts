@@ -28,11 +28,3 @@ export const guild = async (address: string) => {
 
     return response;
 }
-
-$query;
-export function xkcdTransform(args: HttpTransformArgs): HttpResponse {
-	return {
-		...args.response,
-		headers: [],
-	};
-}

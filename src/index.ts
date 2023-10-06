@@ -47,3 +47,10 @@ export async function xkcdRaw(): Promise<Manual<HttpResponse>> {
     });
 }
 
+$query;
+export function xkcdTransform(args: HttpTransformArgs): HttpResponse {
+	return {
+		...args.response,
+		headers: [],
+	};
+}
