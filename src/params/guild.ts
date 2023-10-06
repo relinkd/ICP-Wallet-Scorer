@@ -8,6 +8,7 @@ import {
 } from 'azle/canisters/management';
 
 
+$update
 export const guild = async (address: string) => {
     const response = await managementCanister
 		.http_request({
