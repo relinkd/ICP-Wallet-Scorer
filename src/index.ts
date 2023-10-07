@@ -1,4 +1,4 @@
-import { ic, Manual, match, Opt, Principal, $query, $update, text, int16 } from 'azle';
+import { ic, Manual, match, Opt, Principal, $query, $update, text, float32 } from 'azle';
 import {
     HttpResponse,
     HttpTransformArgs,
@@ -9,7 +9,7 @@ import { evaluateScore } from './lib/helpers/evaluateScore';
 import { guild as guildRequest } from './params/guild';
 
 $update;
-export async function xkcd(): Promise<Manual<int16>> {
+export async function xkcd(): Promise<Manual<float32>> {
     const guild = await guildRequest('0xDD6BFbe9EC414FFABBcc80BB88378c0684e2Ad9c');
 
     ic.reply(guild)
