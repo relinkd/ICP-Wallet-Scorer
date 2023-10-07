@@ -1,6 +1,7 @@
 import {
 	Opt, ic, match, int16, float32
 } from 'azle';
+import decodeUtf8 from 'decode-utf8';
 import {
 	managementCanister,
 } from 'azle/canisters/management';
@@ -23,9 +24,11 @@ export const degenScore = async (address: string): Promise<float32> => {
 		})
 		.cycles(50_000_000n)
 		.call();
+    
+    const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
 
 	return match(response, {
-		Ok: (response) => 15,
+		Ok: (response) => decodedData.code !== 5 ? 15 : 0,
 		Err: (err) => 0
 	});
 }
