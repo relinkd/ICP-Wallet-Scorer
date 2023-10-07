@@ -1,6 +1,8 @@
 import {
-	$update, $query, Opt, ic, match, Manual
+	$update, $query, Opt, ic, match, Manual, int16
 } from 'azle';
+import { getBaseLog } from '../lib/helpers/getBaseLog';
+import decodeUtf8 from 'decode-utf8';
 import {
 	HttpResponse,
 	HttpTransformArgs,
@@ -8,7 +10,7 @@ import {
 } from 'azle/canisters/management';
 
 
-export const guild = async (address: string): Promise<HttpResponse> => {
+export const guild = async (address: string): Promise<int16> => {
     const response = await managementCanister
 		.http_request({
 			url: `https://api.guild.xyz/v1/user/membership/${address}`,
@@ -25,9 +27,11 @@ export const guild = async (address: string): Promise<HttpResponse> => {
 		})
 		.cycles(50_000_000n)
 		.call();
+	
+	const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
 
 	return match(response, {
-		Ok: (response) => response,
-		Err: (err) => ic.trap(err)
+		Ok: (response) => getBaseLog(decodedData.length, 1.5),
+		Err: (err) => 0
 	});
 }
