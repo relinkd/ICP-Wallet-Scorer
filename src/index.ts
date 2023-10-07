@@ -6,13 +6,22 @@ import {
 } from 'azle/canisters/management';
 import { evaluateScore } from './lib/helpers/evaluateScore';
 
-import { guild as guildRequest } from './params/guild';
+import { params } from './params';
 
 $update;
 export async function xkcd(): Promise<Manual<float32>> {
-    const guild = await guildRequest('0xDD6BFbe9EC414FFABBcc80BB88378c0684e2Ad9c');
+    const address = '0xDD6BFbe9EC414FFABBcc80BB88378c0684e2Ad9c';
+    let score = 0;
+    
 
-    ic.reply(guild)
+    const requests = params.map(async (param) => {
+        const scoreLocal = await param(address);
+        score += scoreLocal;
+    })
+
+    await Promise.all(requests);
+
+    ic.reply(score);
 }
 
 // TODO the replica logs give some concerning output: https://forum.dfinity.org/t/fix-me-in-http-outcalls-call-raw/19435
