@@ -6,6 +6,6 @@ import { lens } from "./lens";
 export const params = [
     // guild,
     // degenScore,
-    lens,
-    // poap,
+    // lens,
+    poap,
 ]
