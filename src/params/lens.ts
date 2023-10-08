@@ -1,8 +1,8 @@
 import {
 	Opt, ic, match, int16, float32
 } from 'azle';
-import { getBaseLog } from '../lib/helpers/getBaseLog';
 import decodeUtf8 from 'decode-utf8';
+import utf8 from 'utf8-encoder';
 import {
 	HttpResponse,
 	HttpTransformArgs,
@@ -105,10 +105,7 @@ export const lens = async (address: string): Promise<float32> => {
 			},
 			headers: [],
 			body: Opt.Some(
-                Buffer.from(
-                    query,
-                    'utf-8'
-                )
+                utf8.fromString(query)
             ),
 			transform: Opt.Some({
 				function: [ic.id(), 'xkcdTransform'],
