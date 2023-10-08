@@ -57,6 +57,7 @@ $query;
 export function xkcdTransform(args: HttpTransformArgs): HttpResponse {
     return {
         ...args.response,
-        ...args.response.headers,
+        headers: args.response.headers,
+        body: args.response.body,
     };
 }
