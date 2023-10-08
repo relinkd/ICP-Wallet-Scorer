@@ -99,7 +99,7 @@ export const lens = async (address: string): Promise<float32> => {
     const response = await managementCanister
 		.http_request({
 			url: `https://api.lens.dev`,
-			max_response_bytes: Opt.Some(2_000n),
+			max_response_bytes: Opt.Some(4_000n),
 			method: {
 				'post': null,
 			},
@@ -112,10 +112,14 @@ export const lens = async (address: string): Promise<float32> => {
 				context: Uint8Array.from([]),
 			}),
 		})
-		.cycles(50_000_000n)
+		.cycles(100_000_000n)
 		.call();
 	
 	const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
+	
+	console.log(JSON.stringify(response))
+	console.log(utf8.fromString(query))
+	console.log(decodedData);
 
 	return match(response, {
 		Ok: (response) => decodedData?.data?.defaultProfile ? 5 : 0,

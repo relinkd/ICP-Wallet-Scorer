@@ -4,8 +4,8 @@ import { poap } from "./poap";
 import { lens } from "./lens";
 
 export const params = [
-    guild,
-    degenScore,
+    // guild,
+    // degenScore,
     lens,
     // poap,
 ]
