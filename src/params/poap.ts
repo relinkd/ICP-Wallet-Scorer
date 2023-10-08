@@ -23,7 +23,7 @@ export const poap = async (address: string): Promise<float32> => {
                 },
                 {
                     name: 'x-api-key',
-                    value: process.env.POAP_API_KEY!,
+                    value: '',
                 }
             ],
 			body: Opt.None,
