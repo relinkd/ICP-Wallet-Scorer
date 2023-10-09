@@ -11,7 +11,7 @@ import { getBaseLog } from '../lib/helpers/getBaseLog';
 export const nftEth = async (address: string): Promise<float32> => {
     const response = await managementCanister
 		.http_request({
-			url: `https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_ETH}/getNFTs?owner=${address}&withMetadata=false`,
+			url: `https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_ETH}/getNFTs?owner=${address}&withMetadata=false&pageSize=1`,
 			max_response_bytes: Opt.Some(4_000n),
 			method: {
 				'get': null,
@@ -23,7 +23,7 @@ export const nftEth = async (address: string): Promise<float32> => {
 				context: Uint8Array.from([]),
 			}),
 		})
-		.cycles(70_000_000n)
+		.cycles(50_000_000n)
 		.call();
     
     const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
