@@ -23,7 +23,7 @@ export const nftEth = async (address: string): Promise<float32> => {
 				context: Uint8Array.from([]),
 			}),
 		})
-		.cycles(50_000_000n)
+		.cycles(70_000_000n)
 		.call();
     
     const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
