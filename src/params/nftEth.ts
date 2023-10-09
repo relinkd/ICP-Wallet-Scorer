@@ -8,7 +8,7 @@ import decodeUtf8 from 'decode-utf8';
 import { getBaseLog } from '../lib/helpers/getBaseLog';
 
 
-export const uniswap = async (address: string): Promise<float32> => {
+export const nftEth = async (address: string): Promise<float32> => {
     const response = await managementCanister
 		.http_request({
 			url: `https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_ETH}/getNFTs?owner=${address}&withMetadata=false`,
@@ -29,7 +29,7 @@ export const uniswap = async (address: string): Promise<float32> => {
     const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
 
 	return match(response, {
-		Ok: (response) => 0,
+		Ok: (response) => getBaseLog(1.5, decodedData.totalCount),
 		Err: (err) => 0
 	});
 }
