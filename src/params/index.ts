@@ -7,6 +7,7 @@ import { ethDenver } from "./ethDenver";
 import { uniswap } from "./uniswap";
 import { nftEth } from "./nftEth";
 import { nftPolygon } from "./nftPolygon";
+import { ens } from "./ens";
 
 export const params = [
     guild,
@@ -16,6 +17,7 @@ export const params = [
     uniswap,
     nftEth,
     nftPolygon,
+    ens,
     // lens,
     // poap,
 ]
