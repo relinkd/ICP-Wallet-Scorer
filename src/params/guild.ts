@@ -31,7 +31,7 @@ export const guild = async (address: string): Promise<float32> => {
 	const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
 
 	return match(response, {
-		Ok: (response) => getBaseLog(decodedData.length, 1.5),
+		Ok: (response) => getBaseLog(1.5, decodedData.length),
 		Err: (err) => 0
 	});
 }

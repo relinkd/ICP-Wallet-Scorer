@@ -41,7 +41,7 @@ export const poap = async (address: string): Promise<float32> => {
 	console.log(JSON.stringify(response))
 
 	return match(response, {
-		Ok: (response) => getBaseLog(decodedData.length, 1.5),
+		Ok: (response) => getBaseLog(1.5, decodedData.length),
 		Err: (err) => 0
 	});
 }
