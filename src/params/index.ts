@@ -18,6 +18,6 @@ export const params = [
     nftEth,
     nftPolygon,
     ens,
-    // lens,
+    lens,
     // poap,
 ]

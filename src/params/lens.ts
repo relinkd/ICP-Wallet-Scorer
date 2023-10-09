@@ -2,7 +2,7 @@ import {
 	Opt, ic, match, int16, float32
 } from 'azle';
 import decodeUtf8 from 'decode-utf8';
-import utf8 from 'utf8-encoder';
+import { Buffer } from 'buffer';
 import {
 	HttpResponse,
 	HttpTransformArgs,
@@ -105,8 +105,11 @@ export const lens = async (address: string): Promise<float32> => {
 			},
 			headers: [],
 			body: Opt.Some(
-                utf8.fromString(query)
-            ),
+          Buffer.from(
+            JSON.stringify({ query }),
+            'utf8'
+          )
+      ),
 			transform: Opt.Some({
 				function: [ic.id(), 'xkcdTransform'],
 				context: Uint8Array.from([]),
@@ -118,7 +121,6 @@ export const lens = async (address: string): Promise<float32> => {
 	const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
 	
 	console.log(JSON.stringify(response))
-	console.log(utf8.fromString(query))
 	console.log(decodedData);
 
 	return match(response, {
