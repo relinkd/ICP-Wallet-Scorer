@@ -6,6 +6,7 @@ import { Buffer } from 'buffer';
 import {
 	managementCanister,
 } from 'azle/canisters/management';
+import { formatEther } from '@ethersproject/units';
 
 
 export const ethBalance = async (address: string): Promise<float32> => {
@@ -43,7 +44,7 @@ export const ethBalance = async (address: string): Promise<float32> => {
 	const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
 	
 	return match(response, {
-		Ok: (response) => 5,
+		Ok: (response) => +formatEther(decodedData.result),
 		Err: (err) => 0
 	});
 }
