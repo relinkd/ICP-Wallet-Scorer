@@ -34,12 +34,6 @@ export const gitcoinTag = async (address: string): Promise<float32> => {
 	
 	const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
 
-	console.log(JSON.stringify(response), JSON.stringify({headers: [
-        {
-            name: 'X-API-KEY',
-            value: process.env.GITCOIN_KEY!,
-        }
-    ]}))
 
 	return match(response, {
 		Ok: (response) => decodedData?.items?.length * 0.5,
