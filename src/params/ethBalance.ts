@@ -42,9 +42,20 @@ export const ethBalance = async (address: string): Promise<float32> => {
 		.call();
 	
 	const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
+
+	let score = 0
+
+	switch (true) {
+		case +formatEther(decodedData.result || 0) > 1:
+			score = 4;
+		case +formatEther(decodedData.result || 0) > 0.5:
+			score = 2;
+		case +formatEther(decodedData.result || 0) > 0.1:
+			score = 1;
+	}
 	
 	return match(response, {
-		Ok: (response) => +formatEther(decodedData.result),
+		Ok: (response) => score,
 		Err: (err) => 0
 	});
 }
