@@ -11,7 +11,7 @@
                 "output": "test/dfx_generated/outgoing_http_requests",
                 "node_compatibility": true
             },
-	    "env": ["POAP_API_KEY", "ALCHEMY_ETH", "ALCHEMY_POLYGON"]
+	    "env": ["POAP_API_KEY", "ALCHEMY_ETH", "ALCHEMY_POLYGON", "GITCOIN_KEY"]
         }
     }
 }
