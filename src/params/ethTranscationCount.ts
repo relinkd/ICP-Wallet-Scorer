@@ -41,7 +41,7 @@ export const ethTransactionCount = async (address: string): Promise<float32> => 
 	const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
 	
 	return match(response, {
-		Ok: (response) => getBaseLog(1.5, +formatEther(decodedData?.result)),
+		Ok: (response) => getBaseLog(1.5, parseInt(decodedData?.result, 16)),
 		Err: (err) => 0
 	});
 }
