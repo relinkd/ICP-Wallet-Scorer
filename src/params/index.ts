@@ -13,6 +13,7 @@ import { polygonBalance } from "./polygonBalance";
 import { tokenEth } from "./tokenEth";
 import { tokenPolygon } from "./tokenPolygon";
 import { ethTransactionCount } from "./ethTranscationCount";
+import { polygonTransactionCount } from "./polygonTransactionCount";
 
 export const params = [
     // guild,
@@ -28,6 +29,7 @@ export const params = [
     tokenEth,
     tokenPolygon,
     ethTransactionCount,
+    polygonTransactionCount,
     // lens,
     // poap,
 ]
