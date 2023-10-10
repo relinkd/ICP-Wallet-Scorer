@@ -10,6 +10,7 @@ import { nftPolygon } from "./nftPolygon";
 import { ens } from "./ens";
 import { ethBalance } from "./ethBalance";
 import { polygonBalance } from "./polygonBalance";
+import { tokenEth } from "./tokenEth";
 
 export const params = [
     // guild,
@@ -22,6 +23,7 @@ export const params = [
     // ens,
     ethBalance,
     polygonBalance,
+    tokenEth,
     // lens,
     // poap,
 ]
