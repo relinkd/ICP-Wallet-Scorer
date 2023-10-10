@@ -18,14 +18,14 @@ import { gitcoinTag } from "./gitcoinTag";
 import { zkBadge } from "./zkBadge";
 
 export const params = [
-    // guild,
-    // degenScore,
-    // ethCC,
-    // ethDenver,
-    // uniswap,
-    // nftEth,
-    // nftPolygon,
-    // ens,
+    guild,
+    degenScore,
+    ethCC,
+    ethDenver,
+    uniswap,
+    nftEth,
+    nftPolygon,
+    ens,
     ethBalance,
     polygonBalance,
     tokenEth,
@@ -33,7 +33,7 @@ export const params = [
     ethTransactionCount,
     polygonTransactionCount,
     gitcoinTag,
-    zkBadge,
+    // zkBadge,
     // lens,
     // poap,
 ]
