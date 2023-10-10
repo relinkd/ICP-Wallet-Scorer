@@ -15,6 +15,7 @@ import { tokenPolygon } from "./tokenPolygon";
 import { ethTransactionCount } from "./ethTranscationCount";
 import { polygonTransactionCount } from "./polygonTransactionCount";
 import { gitcoinTag } from "./gitcoinTag";
+import { zkBadge } from "./zkBadge";
 
 export const params = [
     // guild,
@@ -32,6 +33,7 @@ export const params = [
     ethTransactionCount,
     polygonTransactionCount,
     gitcoinTag,
+    zkBadge,
     // lens,
     // poap,
 ]
