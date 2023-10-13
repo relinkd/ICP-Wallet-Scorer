@@ -4,6 +4,7 @@ import {
 import {
 	managementCanister,
 } from 'azle/canisters/management';
+import { Buffer } from 'buffer';
 
 
 export const ethDenver = async (address: string): Promise<float32> => {

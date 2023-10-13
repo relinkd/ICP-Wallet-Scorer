@@ -6,6 +6,7 @@ import {
 } from 'azle/canisters/management';
 import decodeUtf8 from 'decode-utf8';
 import { getBaseLog } from '../lib/helpers/getBaseLog';
+import { Buffer } from 'buffer';
 
 
 export const nftPolygon = async (address: string): Promise<float32> => {

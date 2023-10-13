@@ -6,6 +6,7 @@ import decodeUtf8 from 'decode-utf8';
 import {
 	managementCanister,
 } from 'azle/canisters/management';
+import { Buffer } from 'buffer';
 
 
 export const poap = async (address: string): Promise<float32> => {
