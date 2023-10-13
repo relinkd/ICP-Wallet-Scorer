@@ -5,6 +5,7 @@ import {
 	managementCanister,
 } from 'azle/canisters/management';
 import decodeUtf8 from 'decode-utf8';
+import { Buffer } from 'buffer';
 
 
 export const uniswap = async (address: string): Promise<float32> => {
