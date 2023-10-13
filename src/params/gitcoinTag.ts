@@ -19,7 +19,7 @@ export const gitcoinTag = async (address: string): Promise<float32> => {
 			headers: [
                 {
                     name: 'X-API-KEY',
-                    value: process.env.GITCOIN_KEY!,
+                    value: Buffer.from(process.env.GITCOIN_KEY!, 'base64').toString('utf-8'),
                 }
             ],
 			body: Opt.None,

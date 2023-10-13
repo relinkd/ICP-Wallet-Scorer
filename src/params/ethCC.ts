@@ -23,7 +23,7 @@ export const ethCC = async (address: string): Promise<float32> => {
                 },
                 {
                     name: 'x-api-key',
-                    value: process.env.POAP_API_KEY!,
+                    value: Buffer.from(process.env.POAP_API_KEY!, 'base64').toString('utf-8'),
                 }
             ],
 			body: Opt.None,

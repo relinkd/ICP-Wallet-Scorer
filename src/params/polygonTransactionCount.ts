@@ -12,7 +12,7 @@ export const polygonTransactionCount = async (address: string): Promise<float32>
 
     const response = await managementCanister
 		.http_request({
-			url: `https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_POLYGON}`,
+			url: `https://eth-mainnet.g.alchemy.com/v2/${Buffer.from(process.env.ALCHEMY_POLYGON!, 'base64').toString('utf-8')}`,
 			max_response_bytes: Opt.Some(4_000n),
 			method: {
 				'post': null,
