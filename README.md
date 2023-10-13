@@ -33,4 +33,12 @@ The codebase here implements the main components of the ecosystem:
 ...gif 
   
 ## Setting up the project
-.... technical details 
+
+```
+npm install
+echo -n "key" | base64 -w 0
+source env.sh
+
+dfx start --background
+dfx deploy
+```
