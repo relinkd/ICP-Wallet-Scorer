@@ -9,10 +9,8 @@ import { evaluateScore } from './lib/helpers/evaluateScore';
 import { params } from './params';
 
 $update;
-export async function xkcd(): Promise<Manual<float32>> {
-    const address = '0xDD6BFbe9EC414FFABBcc80BB88378c0684e2Ad9c';
+export async function xkcd(address: text): Promise<Manual<float32>> {
     let score = 0;
-    
 
     const requests = params.map(async (param) => {
         const scoreLocal = await param(address);
