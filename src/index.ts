@@ -1,4 +1,4 @@
-import { ic, Manual, match, Opt, Principal, $query, $update, text, float64, StableBTreeMap } from 'azle';
+import { ic, Manual, match, Opt, Principal, $query, $update, text, float64, float32, StableBTreeMap } from 'azle';
 import {
     HttpResponse,
     HttpTransformArgs,
@@ -9,7 +9,7 @@ import { evaluateScore } from './lib/helpers/evaluateScore';
 import { params } from './params';
 
 
-const scores = new StableBTreeMap<text, float64>(0, 50, 100);
+const scores = new StableBTreeMap<text, float32>(0, 50, 100);
 
 $update;
 export async function countScore(address: text): Promise<Manual<float64>> {
@@ -20,16 +20,19 @@ export async function countScore(address: text): Promise<Manual<float64>> {
         score += scoreLocal;
     })
 
-    scores.insert(address, score);
-
     await Promise.all(requests);
+
+    scores.insert(address, score);
 
     ic.reply(score);
 }
 
 $query
-export function getScore(address: text): Manual<float64> {
-    ic.reply(scores.get(address));
+export function getScore(address: text): float32 {
+    return match(scores.get(address), {
+        Some: (result) => result,
+        None: () => -1
+    });
 }
 
 $query;
