@@ -6,7 +6,7 @@ type HttpResponse = record {
 };
 type HttpTransformArgs = record { context : vec nat8; response : HttpResponse };
 service : () -> {
-  xkcd : () -> (float32);
+  xkcd : () -> (float64);
   xkcdRaw : () -> (text);
   xkcdTransform : (HttpTransformArgs) -> (HttpResponse) query;
 }

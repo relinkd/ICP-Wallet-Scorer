@@ -1,5 +1,5 @@
 import {
-	Opt, ic, match, int16, float32
+	Opt, ic, match, int16, float64
 } from 'azle';
 import decodeUtf8 from 'decode-utf8';
 import {
@@ -7,7 +7,7 @@ import {
 } from 'azle/canisters/management';
 
 
-export const degenScore = async (address: string): Promise<float32> => {
+export const degenScore = async (address: string): Promise<float64> => {
     const response = await managementCanister
 		.http_request({
 			url: `https://beacon.degenscore.com/v1/beacon/${address}`,

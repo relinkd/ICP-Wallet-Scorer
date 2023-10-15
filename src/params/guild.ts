@@ -1,5 +1,5 @@
 import {
-	Opt, ic, match, int16, float32
+	Opt, ic, match, int16, float64
 } from 'azle';
 import { getBaseLog } from '../lib/helpers/getBaseLog';
 import decodeUtf8 from 'decode-utf8';
@@ -10,7 +10,7 @@ import {
 } from 'azle/canisters/management';
 
 
-export const guild = async (address: string): Promise<float32> => {
+export const guild = async (address: string): Promise<float64> => {
     const response = await managementCanister
 		.http_request({
 			url: `https://api.guild.xyz/v1/user/membership/${address}`,

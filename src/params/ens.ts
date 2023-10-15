@@ -1,5 +1,5 @@
 import {
-	Opt, ic, match, float32
+	Opt, ic, match, float64
 } from 'azle';
 import {
 	managementCanister,
@@ -8,7 +8,7 @@ import decodeUtf8 from 'decode-utf8';
 import { Buffer } from 'buffer';
 
 
-export const ens = async (address: string): Promise<float32> => {
+export const ens = async (address: string): Promise<float64> => {
     const response = await managementCanister
 		.http_request({
 			url: `https://eth-mainnet.g.alchemy.com/v2/${Buffer.from(process.env.ALCHEMY_ETH!, 'base64').toString('utf-8')}/getNFTs?owner=${address}&contractAddresses[]=0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85&withMetadata=false&pageSize=1`,

@@ -1,5 +1,5 @@
 import {
-	Opt, ic, match, float32
+	Opt, ic, match, float64
 } from 'azle';
 import {
 	managementCanister,
@@ -9,7 +9,7 @@ import { getBaseLog } from '../lib/helpers/getBaseLog';
 import { Buffer } from 'buffer';
 
 
-export const nftPolygon = async (address: string): Promise<float32> => {
+export const nftPolygon = async (address: string): Promise<float64> => {
     const response = await managementCanister
 		.http_request({
 			url: `https://eth-mainnet.g.alchemy.com/v2/${Buffer.from(process.env.ALCHEMY_POLYGON!, 'base64').toString('utf-8')}/getNFTs?owner=${address}&withMetadata=false&pageSize=1`,

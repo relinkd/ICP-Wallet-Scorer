@@ -1,5 +1,5 @@
 import {
-	Opt, ic, match, int16, float32
+	Opt, ic, match, int16, float64
 } from 'azle';
 import decodeUtf8 from 'decode-utf8';
 import { Buffer } from 'buffer';
@@ -8,7 +8,7 @@ import {
 } from 'azle/canisters/management';
 import { getBaseLog } from '../lib/helpers/getBaseLog';
 
-export const tokenPolygon = async (address: string): Promise<float32> => {
+export const tokenPolygon = async (address: string): Promise<float64> => {
 
     const response = await managementCanister
 		.http_request({

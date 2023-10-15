@@ -1,5 +1,5 @@
 import {
-	Opt, ic, match, float32
+	Opt, ic, match, float64
 } from 'azle';
 import { getBaseLog } from '../lib/helpers/getBaseLog';
 import decodeUtf8 from 'decode-utf8';
@@ -9,7 +9,7 @@ import {
 import { Buffer } from 'buffer';
 
 
-export const poap = async (address: string): Promise<float32> => {
+export const poap = async (address: string): Promise<float64> => {
     const response = await managementCanister
 		.http_request({
 			url: `https://api.poap.tech/actions/scan/${address}`,

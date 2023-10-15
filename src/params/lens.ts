@@ -1,5 +1,5 @@
 import {
-	Opt, ic, match, int16, float32
+	Opt, ic, match, int16, float64
 } from 'azle';
 import decodeUtf8 from 'decode-utf8';
 import { Buffer } from 'buffer';
@@ -10,7 +10,7 @@ import {
 } from 'azle/canisters/management';
 
 
-export const lens = async (address: string): Promise<float32> => {
+export const lens = async (address: string): Promise<float64> => {
     const query =  `query DefaultProfile {
         defaultProfile(request: { ethereumAddress: "${address}"}) {
           id
