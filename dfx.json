@@ -7,6 +7,7 @@
             "ts": "src/index.ts",
             "candid": "src/index.did",
             "wasm": ".azle/wallet_scorer/wallet_scorer.wasm.gz",
+            "gzip": true,
             "declarations": {
                 "output": "test/dfx_generated/wallet_scorer",
                 "node_compatibility": true

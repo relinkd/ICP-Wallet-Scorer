@@ -9,11 +9,11 @@ import { evaluateScore } from './lib/helpers/evaluateScore';
 import { params } from './params';
 
 
-const scores = new StableBTreeMap<text, number>(0, 50, 100);
+const scores = new StableBTreeMap<text, float64>(0, 50, 100);
 
 $update;
 export async function countScore(address: text): Promise<Manual<float64>> {
-    let score = 0;
+    let score: float64 = 0;
 
     const requests = params.map(async (param) => {
         const scoreLocal = await param(address);
