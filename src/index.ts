@@ -9,7 +9,7 @@ import { evaluateScore } from './lib/helpers/evaluateScore';
 import { params } from './params';
 
 
-const scores = new StableBTreeMap<text, float64>(0, 50, 100);
+const scores = new StableBTreeMap<text, number>(0, 50, 100);
 
 $update;
 export async function countScore(address: text): Promise<Manual<float64>> {
