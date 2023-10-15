@@ -12,7 +12,7 @@ import { params } from './params';
 const scores = new StableBTreeMap<text, float32>(0, 50, 100);
 
 $update;
-export async function xkcd(address: text): Promise<Manual<float32>> {
+export async function countScore(address: text): Promise<Manual<float32>> {
     let score = 0;
 
     const requests = params.map(async (param) => {
@@ -25,6 +25,11 @@ export async function xkcd(address: text): Promise<Manual<float32>> {
     await Promise.all(requests);
 
     ic.reply(score);
+}
+
+$query
+export function getScore(address: text): Manual<float32> {
+    ic.reply(scores.get(address));
 }
 
 $query;
