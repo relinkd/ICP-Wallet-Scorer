@@ -22,14 +22,14 @@ export async function countScore(address: text): Promise<Manual<float64>> {
 
     await Promise.all(requests);
 
-    scores.insert(address, score);
+    scores.insert(address.toLowerCase(), score);
 
     ic.reply(score);
 }
 
 $query
 export function getScore(address: text): float32 {
-    return match(scores.get(address), {
+    return match(scores.get(address.toLowerCase()), {
         Some: (result) => result,
         None: () => -1
     });
