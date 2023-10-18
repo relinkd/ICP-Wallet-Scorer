@@ -7,12 +7,12 @@ import {
 import { evaluateScore } from './lib/helpers/evaluateScore';
 
 import { params } from './params';
-
+import { lens } from './params/lens';
 
 const scores = new StableBTreeMap<text, float32>(0, 50, 100);
 
 $update;
-export async function countScore(address: text): Promise<Manual<float64>> {
+export async function countScore(address: text): Promise<float64> {
     let score: float64 = 0;
 
     const requests = params.map(async (param) => {
@@ -24,7 +24,14 @@ export async function countScore(address: text): Promise<Manual<float64>> {
 
     scores.insert(address.toLowerCase(), score);
 
-    ic.reply(score);
+    // ic.reply(score);
+    return score
+}
+
+export async function countLens(address: text): Promise<float64> {
+    const lensresponse = await lens(address);
+
+    return lensresponse;
 }
 
 $query
