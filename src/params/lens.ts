@@ -110,10 +110,7 @@ export const lens = async (address: string): Promise<float64> => {
             'utf8'
           )
       ),
-			transform: Opt.Some({
-				function: [ic.id(), 'xkcdTransform'],
-				context: Uint8Array.from([]),
-			}),
+			transform: Opt.None,
 		})
 		.cycles(100_000_000n)
 		.call();
