@@ -103,7 +103,12 @@ export const lens = async (address: string): Promise<float64> => {
 			method: {
 				'post': null,
 			},
-			headers: [],
+			headers: [
+        {
+          name: 'Content-Type',
+          value: 'application/json',
+      },
+      ],
 			body: Opt.Some(
           Buffer.from(
             JSON.stringify({ query }),
@@ -120,7 +125,7 @@ export const lens = async (address: string): Promise<float64> => {
 		Ok: (responseOk) => {
 			console.log(responseOk.status);
  			console.log(JSON.stringify(responseOk.body));
- 		 	const log = Buffer.from(responseOk.body, 'utf-8').toString();
+ 		 	const log = Buffer.from(responseOk.body).toString();
 			console.log(JSON.stringify(log))
  			const decodedData = JSON.parse(log);
 
