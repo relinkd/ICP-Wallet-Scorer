@@ -28,13 +28,6 @@ export async function countScore(address: text): Promise<float64> {
     return score
 }
 
-$update;
-export async function countLens(address: text): Promise<float64> {
-    const lensresponse = await lens(address);
-
-    return lensresponse;
-}
-
 $query
 export function getScore(address: text): float32 {
     return match(scores.get(address.toLowerCase()), {
