@@ -34,6 +34,6 @@ export const params = [
     polygonTransactionCount,
     gitcoinTag,
     // zkBadge,
-    lens,
+    // lens,
     // poap,
 ]

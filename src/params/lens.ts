@@ -107,7 +107,7 @@ export const lens = async (address: string): Promise<float64> => {
         {
           name: 'Content-Type',
           value: 'application/json',
-      },
+        },
       ],
 			body: Opt.Some(
           Buffer.from(
