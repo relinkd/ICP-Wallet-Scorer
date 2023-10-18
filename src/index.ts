@@ -28,6 +28,7 @@ export async function countScore(address: text): Promise<float64> {
     return score
 }
 
+$update;
 export async function countLens(address: text): Promise<float64> {
     const lensresponse = await lens(address);
 

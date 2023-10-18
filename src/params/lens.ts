@@ -107,21 +107,25 @@ export const lens = async (address: string): Promise<float64> => {
 			body: Opt.Some(
           Buffer.from(
             JSON.stringify({ query }),
-            'utf8'
+            'utf-8'
           )
       ),
 			transform: Opt.None,
 		})
 		.cycles(100_000_000n)
 		.call();
-	
-	const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
-	
-	console.log(JSON.stringify(response))
-	console.log(decodedData);
+	console.log(response)
 
 	return match(response, {
-		Ok: (response) => decodedData?.data?.defaultProfile ? 5 : 0,
+		Ok: (responseOk) => {
+			console.log(responseOk.status);
+ 			console.log(JSON.stringify(responseOk.body));
+ 		 	const log = Buffer.from(responseOk.body, 'utf-8').toString();
+			console.log(JSON.stringify(log))
+ 			const decodedData = JSON.parse(log);
+
+			return decodedData?.data?.defaultProfile ? 5 : 0
+  		},
 		Err: (err) => 0
 	});
 }
