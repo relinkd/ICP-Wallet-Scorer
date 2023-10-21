@@ -24,11 +24,13 @@ export const degenScore = async (address: string): Promise<float64> => {
 		})
 		.cycles(50_000_000n)
 		.call();
-    
-    const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
 
 	return match(response, {
-		Ok: (response) => decodedData.code !== 5 ? 15 : 0,
+		Ok: (responseOk) => {
+			const decodedData = JSON.parse(decodeUtf8(responseOk.body));
+
+			return decodedData.code !== 5 ? 15 : 0
+		},
 		Err: (err) => 0
 	});
 }

@@ -41,21 +41,23 @@ export const ethBalance = async (address: string): Promise<float64> => {
 		.cycles(100_000_000n)
 		.call();
 	
-	const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
-
-	let score = 0
-
-	switch (true) {
-		case +formatEther(decodedData.result || 0) > 1:
-			score = 4;
-		case +formatEther(decodedData.result || 0) > 0.5:
-			score = 2;
-		case +formatEther(decodedData.result || 0) > 0.1:
-			score = 1;
-	}
 	
 	return match(response, {
-		Ok: (response) => score,
+		Ok: (responseOk) => {
+			const decodedData = JSON.parse(decodeUtf8(responseOk.body));
+			let score = 0;
+
+			switch (true) {
+				case +formatEther(decodedData.result || 0) > 1:
+					score = 4;
+				case +formatEther(decodedData.result || 0) > 0.5:
+					score = 2;
+				case +formatEther(decodedData.result || 0) > 0.1:
+					score = 1;
+			}
+
+			return score;
+		},
 		Err: (err) => 0
 	});
 }

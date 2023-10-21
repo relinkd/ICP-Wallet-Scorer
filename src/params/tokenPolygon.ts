@@ -40,10 +40,12 @@ export const tokenPolygon = async (address: string): Promise<float64> => {
 		.cycles(100_000_000n)
 		.call();
 	
-	const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
-	
 	return match(response, {
-		Ok: (response) => getBaseLog(1.5, decodedData?.result?.tokenBalances?.length),
+		Ok: (responseOk) => {
+			const decodedData = JSON.parse(decodeUtf8(responseOk.body));
+
+			return getBaseLog(1.5, decodedData?.result?.tokenBalances?.length)
+		},
 		Err: (err) => 0
 	});
 }

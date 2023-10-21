@@ -41,21 +41,23 @@ export const polygonBalance = async (address: string): Promise<float64> => {
 		.cycles(100_000_000n)
 		.call();
 	
-	const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
-
-	let score = 0
-
-	switch (true) {
-		case +formatEther(decodedData.result || 0) > 500:
-			score = 4;
-		case +formatEther(decodedData.result || 0) > 100:
-			score = 2;
-		case +formatEther(decodedData.result || 0) > 50:
-			score = 1;
-	}
-	
 	return match(response, {
-		Ok: (response) => score,
+		Ok: (responseOk) => {
+			let score = 0
+
+			const decodedData = JSON.parse(decodeUtf8(responseOk.body));
+
+			switch (true) {
+				case +formatEther(decodedData.result || 0) > 500:
+					score = 4;
+				case +formatEther(decodedData.result || 0) > 100:
+					score = 2;
+				case +formatEther(decodedData.result || 0) > 50:
+					score = 1;
+			}
+
+			return score
+		},
 		Err: (err) => 0
 	});
 }

@@ -25,11 +25,13 @@ export const ens = async (address: string): Promise<float64> => {
 		})
 		.cycles(70_000_000n)
 		.call();
-    
-    const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
 
 	return match(response, {
-		Ok: (response) => decodedData.totalCount * 2,
+		Ok: (responseOk) => {
+			const decodedData = JSON.parse(decodeUtf8(responseOk.body));
+			
+			return decodedData.totalCount * 2
+		},
 		Err: (err) => 0
 	});
 }

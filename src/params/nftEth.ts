@@ -27,10 +27,12 @@ export const nftEth = async (address: string): Promise<float64> => {
 		.cycles(70_000_000n)
 		.call();
     
-    const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
-
 	return match(response, {
-		Ok: (response) => getBaseLog(1.5, decodedData.totalCount),
+		Ok: (responseOk) => {
+			const decodedData = JSON.parse(decodeUtf8(responseOk.body));
+
+			return getBaseLog(1.5, decodedData.totalCount)
+		},
 		Err: (err) => 0
 	});
 }

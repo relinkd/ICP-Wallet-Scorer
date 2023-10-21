@@ -27,11 +27,12 @@ export const guild = async (address: string): Promise<float64> => {
 		})
 		.cycles(50_000_000n)
 		.call();
-	
-	const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
 
 	return match(response, {
-		Ok: (response) => getBaseLog(1.5, decodedData.length),
+		Ok: (responseOk) => {
+			const decodedData = JSON.parse(decodeUtf8(responseOk.body));
+			return getBaseLog(1.5, decodedData.length)
+		},
 		Err: (err) => 0
 	});
 }
