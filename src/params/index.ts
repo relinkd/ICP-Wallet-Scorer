@@ -35,5 +35,5 @@ export const params = [
     gitcoinTag,
     // zkBadge,
     // lens,
-    // poap,
+    poap,
 ]

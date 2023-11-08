@@ -24,7 +24,7 @@ export const poap = async (address: string): Promise<float64> => {
                 },
                 {
                     name: 'x-api-key',
-                    value: process.env.POAP_API_KEY!,
+                    value: Buffer.from(process.env.POAP_API_KEY!!, 'base64').toString('utf-8'),
                 }
             ],
 			body: Opt.None,
@@ -35,14 +35,25 @@ export const poap = async (address: string): Promise<float64> => {
 		})
 		.cycles(70_000_000n)
 		.call();
-	
-	
-	const decodedData = response.Ok?.body && JSON.parse(decodeUtf8(response.Ok?.body));
 
-	console.log(JSON.stringify(response))
+	console.log(response.status)
+
 
 	return match(response, {
-		Ok: (response) => getBaseLog(1.5, decodedData.length),
-		Err: (err) => 0
+		Ok: (responseOk) => {
+			console.log(responseOk.status);
+                        console.log(JSON.stringify(responseOk.body));
+                        const log = Buffer.from(responseOk.body).toString();
+                        console.log(JSON.stringify(log))
+                        const decodedData = JSON.parse(log);
+			return getBaseLog(1.5, 1)
+
+		},
+		Err: (err) => {
+			console.log("test")
+			console.log(JSON.stringify(err));
+
+			return 0
+		}
 	});
 }
