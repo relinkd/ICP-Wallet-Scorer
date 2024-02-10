@@ -3,7 +3,6 @@
 ## About {r}elinkd 
 Digital identity + scores protocol and dapp. We're building a decentralized identity protocol, aggregating on-chain and off-chain credentials into the scores for creating trustworthy self-sovereign identity and personal brand profiles.
 <br>
-<br>
 
 ## Web3 advantages
 The codebase here implements the main components of the ecosystem:
