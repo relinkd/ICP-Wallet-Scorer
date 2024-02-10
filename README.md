@@ -29,6 +29,11 @@ https://twitter.com/relinkdxyz
 https://github.com/relinkd/ICP-Wallet-Scorer
 
 https://discord.com/invite/Z5TTh7uNTj
+
+## Repositories
+
+[sponsorship-canister-manager](https://github.com/relinkd/sponsorship-canister-manager)
+[frontend canister ids](https://github.com/relinkd/ICP_dApp)
   
 ## Setting up the project
 
