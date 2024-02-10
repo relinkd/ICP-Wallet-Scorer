@@ -7,12 +7,10 @@ Digital identity + scores protocol and dapp. We're building a decentralized iden
 ## Web3 advantages
 The codebase here implements the main components of the ecosystem:
  <br>
- <br>
 <li>user score computation canister</li>
 <li>user score NFT mint canister</li>
 <li>decentralized front-end with the whole flow of score interaction</li>
 <li>ICP <> EVM multiwallet and sponsored transactions for the ICP computation</li>
-<br>
 <br>
 
 ## How is it built
