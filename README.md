@@ -32,7 +32,7 @@ https://discord.com/invite/Z5TTh7uNTj
 
 ## Repositories
 
-[sponsorship-canister-manager](https://github.com/relinkd/sponsorship-canister-manager)
+[sponsorship-canister-manager](https://github.com/relinkd/sponsorship-canister-manager) <br>
 [frontend canister ids](https://github.com/relinkd/ICP_dApp)
   
 ## Setting up the project
