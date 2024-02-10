@@ -1,24 +1,11 @@
-## {r}elinkd score on ICP
-<br>
-
-This repo contains the {r}elinkd score built on Internet Computer Protocol.
-<br>
-<br>
-<i>relinkd dapp https://relinkd.xyz/ <br>
-relinkd twitter https://twitter.com/relinkdxyz <br>
-relinkd docs - https://r-elinkd.gitbook.io/ <br>
-<br>
-Internet Computer - https://internetcomputer.org/ <br>
-Internet Computer Docs - https://wiki.internetcomputer.org/wiki/
-
-<br>
-</i>
+# {r}elinkd
 
 ## About {r}elinkd 
-{r}elinkd is a reputation protocol that issues an <b>NFT attestation</b> to the users about their on-chain reputation and allows to <b>bundle the credentials in a ZK-manner</b> (generating a credential proof without revealing the wallet addresses) to create unique user identity on-chain and provide<b> benefits for the identity</b> reputation. 
+Digital identity + scores protocol and dapp. We're building a decentralized identity protocol, aggregating on-chain and off-chain credentials into the scores for creating trustworthy self-sovereign identity and personal brand profiles.
 <br>
 <br>
-## About ICP integration
+
+## Web3 advantages
 The codebase here implements the main components of the ecosystem:
  <br>
  <br>
@@ -29,8 +16,22 @@ The codebase here implements the main components of the ecosystem:
 <br>
 <br>
 
-## Showcase 
-...gif 
+## How is it built
+
+**Current {r}elinkd architecture =>** ICP score calculating and decentralized frontend, Gitcoin Passport, Polygon ID, Lens, Alchemy
+**ICP integration tech stack =>** React, Azle, Rust, TypeScript
+
+![scheme](https://github.com/relinkd/ICP-Wallet-Scorer/blob/main/relinkd_scheme.png)
+
+## Resources
+
+https://relinkd.xyz/
+
+https://twitter.com/relinkdxyz
+
+https://github.com/relinkd/ICP-Wallet-Scorer
+
+https://discord.com/invite/Z5TTh7uNTj
   
 ## Setting up the project
 
